@@ -1,6 +1,18 @@
+import { runAutomationTask, isExecutionMessage } from '@/automation/contentTaskRunner';
+import { mountFloatingWorkbench } from '@/utils/floatingWorkbench';
+
 export default defineContentScript({
-  matches: ['*://*.google.com/*'],
+  matches: ['http://*/*', 'https://*/*'],
+  runAt: 'document_idle',
   main() {
-    console.log('Hello content.');
+    mountFloatingWorkbench();
+
+    browser.runtime.onMessage.addListener((message: unknown) => {
+      if (!isExecutionMessage(message)) {
+        return undefined;
+      }
+
+      return runAutomationTask(message.task);
+    });
   },
 });

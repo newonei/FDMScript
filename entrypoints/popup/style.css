@@ -1,12 +1,10 @@
 :root {
   --popup-width: 376px;
-  --popup-height: 510px;
+  --popup-height: 520px;
   --surface: #ffffff;
-  --surface-muted: #f5f7fb;
   --line: #eceff4;
   --text-primary: #151b2b;
   --text-secondary: #7f8ca5;
-  --accent: #ff980b;
   --accent-strong: #ff7f00;
   --shadow-soft: 0 12px 30px rgba(18, 38, 63, 0.08);
   font-family: 'MiSans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI',
@@ -34,18 +32,19 @@ body {
 }
 
 body {
-  color: var(--text-primary);
+  overflow: hidden;
 }
 
-button,
-a {
+button {
   font: inherit;
 }
 
 #app {
   width: var(--popup-width);
   min-height: var(--popup-height);
+  max-height: var(--popup-height);
   padding: 18px;
+  overflow-y: auto;
 }
 
 .popup-shell {
@@ -63,12 +62,9 @@ a {
   padding: 18px 16px;
   border-radius: 10px;
   color: #fff;
-  text-decoration: none;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, #ff9512 0%, #ffab2c 58%, #ffb649 100%);
+  background: linear-gradient(135deg, #ff9512 0%, #ffab2c 58%, #ffb649 100%);
   box-shadow: 0 16px 30px rgba(255, 144, 32, 0.28);
-  animation: banner-enter 320ms ease-out;
 }
 
 .hero-banner::before,
@@ -80,8 +76,7 @@ a {
 }
 
 .hero-banner::before {
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.32) 1px, transparent 1.2px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.32) 1px, transparent 1.2px);
   background-size: 6px 6px;
   width: 138px;
   height: 100%;
@@ -113,8 +108,7 @@ a {
 
 .hero-banner__copy span {
   font-size: 12px;
-  letter-spacing: 0.42em;
-  text-transform: lowercase;
+  letter-spacing: 0.08em;
   opacity: 0.94;
 }
 
@@ -145,9 +139,6 @@ a {
   color: var(--text-secondary);
   background: transparent;
   cursor: pointer;
-  transition:
-    color 180ms ease,
-    transform 180ms ease;
 }
 
 .tab-button + .tab-button {
@@ -169,13 +160,8 @@ a {
     background-color 200ms ease;
 }
 
-.tab-button:hover {
-  color: #606f8a;
-}
-
 .tab-button.is-active {
   color: var(--accent-strong);
-  transform: translateY(-1px);
 }
 
 .tab-button.is-active::after {
@@ -197,15 +183,10 @@ a {
   align-items: center;
   gap: 10px;
   min-width: 0;
+  border: 0;
   color: inherit;
-  text-decoration: none;
-  animation: card-enter 280ms ease both;
-  animation-delay: calc(var(--item-index) * 36ms);
-}
-
-.platform-card:hover .platform-icon {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 20px rgba(34, 52, 92, 0.16);
+  background: transparent;
+  cursor: pointer;
 }
 
 .platform-card__name {
@@ -226,15 +207,6 @@ a {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 8px 16px rgba(34, 52, 92, 0.12);
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
-}
-
-.platform-icon::before,
-.platform-icon::after {
-  content: '';
-  position: absolute;
 }
 
 .platform-icon__main,
@@ -301,158 +273,118 @@ a {
   border: 1px solid #d8e1f2;
 }
 
-.platform-icon--pdd::before {
-  inset: 6px;
-  border-radius: 8px;
-  background:
-    radial-gradient(circle at 30% 34%, rgba(255, 255, 255, 0.88) 0 2px, transparent 2.2px),
-    radial-gradient(circle at 70% 34%, rgba(255, 255, 255, 0.88) 0 2px, transparent 2.2px),
-    radial-gradient(circle at 38% 62%, rgba(255, 255, 255, 0.88) 0 2px, transparent 2.2px),
-    radial-gradient(circle at 62% 62%, rgba(255, 255, 255, 0.88) 0 2px, transparent 2.2px);
-  opacity: 0.9;
-}
-
-.platform-icon--pdd .platform-icon__main {
-  font-size: 20px;
-  transform: translateY(6px);
-}
-
-.platform-icon--tmall .platform-icon__main {
-  font-size: 14px;
-  letter-spacing: 0;
-}
-
-.platform-icon--tmall::after {
-  bottom: 4px;
-  left: 8px;
-  right: 8px;
-  height: 12px;
-  border-radius: 999px 999px 6px 6px;
-  background: rgba(255, 255, 255, 0.16);
-}
-
-.platform-icon--taobao .platform-icon__main {
-  font-size: 28px;
-  font-weight: 900;
-  font-style: italic;
-}
-
-.platform-icon--qianniu .platform-icon__main {
-  font-size: 28px;
-}
-
-.platform-icon--qianniu::before {
-  inset: 9px 8px 11px 8px;
-  border: 2px solid rgba(255, 255, 255, 0.44);
-  border-radius: 16px 16px 14px 14px;
-}
-
-.platform-icon--sycm .platform-icon__main {
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  font-size: 12px;
-  background: rgba(255, 255, 255, 0.96);
-  color: #275cd8;
-}
-
-.platform-icon--sycm::before {
-  inset: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.35);
-  border-radius: 999px;
-}
-
-.platform-icon--1688 .platform-icon__main {
-  font-size: 14px;
-  letter-spacing: 0;
-}
-
-.platform-icon--jd .platform-icon__main {
-  font-size: 14px;
-  letter-spacing: 0;
-}
-
-.platform-icon--jd::before {
-  right: 5px;
-  bottom: 6px;
-  width: 12px;
-  height: 10px;
-  border-radius: 10px 10px 8px 8px;
-  background: rgba(255, 255, 255, 0.82);
-}
-
-.platform-icon--jingmai .platform-icon__main {
-  font-size: 28px;
-  font-weight: 900;
-  color: #2f66e0;
-}
-
-.platform-icon--jingmai::before {
-  inset: 8px;
-  background:
-    linear-gradient(135deg, #2f66e0 0 50%, transparent 50%),
-    linear-gradient(225deg, #ff4b2e 0 48%, transparent 48%);
-  opacity: 0.95;
-}
-
-.platform-icon--jingmai .platform-icon__main {
-  mix-blend-mode: multiply;
-}
-
-.platform-icon--amazon .platform-icon__main {
+.platform-icon--pdd .platform-icon__main,
+.platform-icon--qianniu .platform-icon__main,
+.platform-icon--jingmai .platform-icon__main,
+.platform-icon--amazon .platform-icon__main,
+.platform-icon--ebay .platform-icon__main {
   font-size: 24px;
 }
 
-.platform-icon--amazon::after {
-  left: 10px;
-  right: 10px;
-  bottom: 8px;
-  height: 3px;
-  border-radius: 999px;
-  background: #ffb84d;
-}
-
-.platform-icon--ebay .platform-icon__main {
-  font-size: 28px;
-  color: #e5302b;
-  font-style: italic;
-}
-
+.platform-icon--tmall .platform-icon__main,
+.platform-icon--jd .platform-icon__main,
+.platform-icon--1688 .platform-icon__main,
 .platform-icon--shop .platform-icon__main,
 .platform-icon--walmart .platform-icon__main {
   font-size: 14px;
   letter-spacing: 0;
 }
 
-.platform-icon--walmart::after {
-  inset: 10px;
-  background:
-    radial-gradient(circle at center, rgba(255, 214, 73, 0.98) 0 2px, transparent 2.3px),
-    linear-gradient(0deg, transparent 46%, rgba(255, 214, 73, 0.98) 46% 54%, transparent 54%),
-    linear-gradient(90deg, transparent 46%, rgba(255, 214, 73, 0.98) 46% 54%, transparent 54%);
-  opacity: 0.88;
+.platform-icon--taobao .platform-icon__main {
+  font-size: 28px;
+  font-style: italic;
 }
 
-@keyframes banner-enter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.automation-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
 }
 
-@keyframes card-enter {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.automation-card__head {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.automation-card__copy {
+  display: grid;
+  gap: 4px;
+}
+
+.automation-card__copy p {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a96ae;
+}
+
+.automation-card__copy strong {
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.automation-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.automation-card__badge--neutral {
+  color: #5f6d88;
+  background: #edf2fb;
+}
+
+.automation-card__badge--success {
+  color: #0d6940;
+  background: #daf6e8;
+}
+
+.automation-card__badge--danger {
+  color: #9c2f23;
+  background: #fde4de;
+}
+
+.automation-card__detail {
+  margin: 0;
+  color: #5e6c88;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.automation-card__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-chip {
+  flex: 1;
+  border: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  color: #33415e;
+  background: #edf2fb;
+  cursor: pointer;
+}
+
+.action-chip:disabled {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.action-chip--accent {
+  color: #fff;
+  background: linear-gradient(135deg, #ff9410 0%, #ff7d14 100%);
 }

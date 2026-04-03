@@ -1,3 +1,5 @@
+import { registerRemoteAutomationBackground } from '@/automation/background/controller';
+
 export default defineBackground(() => {
-  console.log('Hello background!', { id: browser.runtime.id });
+  registerRemoteAutomationBackground();
 });
